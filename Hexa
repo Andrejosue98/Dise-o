@@ -15,7 +15,7 @@ def hexa(bina):
             
             lista1.append(aux)
             contf=0
-        
+        global aux1
         aux1=[]
         for n in range(0,len(lista1)):
             if lista1[n]=="0000":
@@ -52,20 +52,49 @@ def hexa(bina):
                 aux1.append("F")
             else:
                 print("Numero invalido")
-        Hexa=""
-        for ele in range(0,len(aux1)):
-            Hexa=Hexa+(aux1[ele])
-        print(Hexa)
+       
+        
     else: #Correcion en caso de que el numero binario no tenga todos los ceros
         nuevo="0"
         nuevo=nuevo+bina
-        print(nuevo)
+        
         largo=len(nuevo)
         hexa(nuevo)
+    Hexa=""
+    for ele in range(0,len(aux1)):
+        Hexa=Hexa+(aux1[ele])
+    
+    return Hexa
     
     
-    return True
     
+    
+def Nrz(bina):
+    lista=["0"]
+    Datos_Nrz=""
+    contl=1
+    cont=0
+    while cont<len(bina):
+        
+        if bina[cont]=='0':
+            lista.append(lista[contl-1])
+        else:
+            if lista[contl-1]=="0":
+                lista.append("1")
+            else:
+                lista.append("0")
+        cont+=1
+        contl+=1
+        
+    for ele in range(1,len(lista)):
+        Datos_Nrz=Datos_Nrz+lista[ele]
+    return Datos_Nrz
 
 #Main
-hexa("1010101001000011110101")
+numero_binario="1010101001000011110101"
+print("Numero binario", numero_binario)
+num=hexa(numero_binario)
+print("Dato en Hexa",num)
+
+dato=Nrz(numero_binario)
+print("Dato en Nrz:",dato)
